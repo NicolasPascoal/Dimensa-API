@@ -9,6 +9,40 @@ Confira a explicação detalhada da arquitetura e a demonstração das funcional
 
 ---
 
+## Arquitetura da Solução
+
+A solução foi desenhada para ser escalável e resiliente, utilizando uma arquitetura baseada em serviços e processamento assíncrono:
+
+- **Camada de API (Flask):** Responsável pelo recebimento das requisições, validação de tokens e interface com o usuário.
+- **Camada de Serviço (Controller):** Centraliza a lógica de negócio, separada das rotas para facilitar a manutenção e testes.
+- **Persistência (MongoDB Atlas):** Escolhido pela flexibilidade de schema e pela facilidade de escalabilidade na nuvem.
+- **Processamento em Background (Celery + Redis):** Utilizado para a rotina de atualização de 12 horas. Isso garante que o agendamento seja independente do ciclo de vida da API e não gere carga excessiva no servidor Web.
+
+## Funcionamento e Solução Adotada
+
+A implementação foca em dois fluxos principais:
+
+1. **Fluxo de Cache Inteligente (On-demand):** 
+   - Ao receber um IP (via `POST`), o sistema primeiro consulta o banco de dados local.
+   - Caso os dados existam, são retornados imediatamente, economizando chamadas à API externa e reduzindo a latência.
+   - Caso contrário, os dados são buscados na API `ipwho.is`, persistidos no MongoDB e então retornados.
+
+2. **Sincronização Periódica (Background):**
+   - O componente **Celery Beat** atua como um agendador, disparando uma tarefa a cada 12 horas.
+   - O **Worker** processa essa fila, percorrendo todos os IPs da base e atualizando as informações de geolocalização.
+   - Foi adotado um intervalo de espera (`sleep`) entre as atualizações para respeitar os limites (*Rate Limiting*) da API pública utilizada.
+
+## Tecnologias Utilizadas
+
+- **Linguagem:** Python 3.x
+- **Framework Web:** Flask
+- **Agendador de Tarefas:** Celery
+- **Broker/Mensageria:** Redis (via Docker)
+- **Banco de Dados:** MongoDB (Atlas)
+- **Testes:** Pytest (com Mocks de API externa)
+
+---
+
 ## Estrutura do Projeto
 ```
 /app
