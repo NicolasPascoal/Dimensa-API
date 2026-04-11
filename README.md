@@ -2,6 +2,13 @@
 
 Projeto de teste técnico Backend utilizando **Python 3, Flask, MongoDB (Atlas) e Celery / Redis**. A API gerencia informações de localização e conectividade a partir de um IP utilizando a API pública `ipwho.is`.
 
+## Demonstração do Projeto
+Confira a explicação detalhada da arquitetura e a demonstração das funcionalidades:
+
+[![Assista no YouTube](https://img.shields.io/badge/YouTube-Assistir%20Vídeo-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=RvC9sp8ydFE)
+
+---
+
 ## Estrutura do Projeto
 ```
 /app
