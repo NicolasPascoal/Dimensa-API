@@ -6,7 +6,7 @@ Projeto Backend utilizando **Python 3, Flask, MongoDB (Atlas) e Celery / Redis**
 Confira a explicação detalhada da arquitetura e a demonstração das funcionalidades:
 
 [![Assista no YouTube](https://img.shields.io/badge/YouTube-Assistir%20Vídeo-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=RvC9sp8ydFE)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/feed/update/urn:li:activity:7454865692694261760/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Projeto-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/feed/update/urn:li:activity:7454865692694261760/)
 ---
 
 ## Arquitetura da Solução
